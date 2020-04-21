@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common_header::CommonHeader">
+</head>
+
+<body class="user-select">
+<header th:include="common/common_navbar::CommomHeader" class="header">
+</header>
+<section class="container container-page">
+    <div class="pageside">
+        <div class="pagemenus">
+            <ul class="pagemenu">
+                <li><a href="/tags">标签云</a></li>
+                <li><a href="/readers">读者墙</a></li>
+                <li><a href="/links">友情链接</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <header class="article-header">
+            <h1 class="article-title">友情链接</h1>
+        </header>
+        <ul class="plinks">
+            <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a>
+            </li>
+            <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a>
+            </li>
+            <li><a href="" title="" target="_blank" rel="nofollow"><img src="images/icon/favicon.ico" alt="">异清轩</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<footer th:include="common/common_footer::CommonFooter" class="footer">
+</footer>
+<!--微信二维码模态框-->
+<div th:include="common/common_wxchat::CommonWxchat" class="modal fade user-select" id="WeChat" tabindex="-1"
+     role="dialog" aria-labelledby="WeChatModalLabel">
+</div>
+<!--该功能正在日以继夜的开发中-->
+<div th:include="common/common_develop::CommonDevelop" class="modal fade user-select" id="areDeveloping" tabindex="-1"
+     role="dialog" aria-labelledby="areDevelopingModalLabel">
+</div>
+<div id="rightClickMenu" th:include="common/right-click-menu::RightClickMenu">
+</div>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.ias.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
