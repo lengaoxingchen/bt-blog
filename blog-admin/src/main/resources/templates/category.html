@@ -33,7 +33,7 @@
           <a class="navbar-brand" href="/">YlsatCMS</a> </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="">消息 <span class="badge">1</span></a></li>
+            <li><a href="/message">消息 <span class="badge">1</span></a></li>
             <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-left">
                 <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
@@ -78,7 +78,7 @@
         <li><a class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">用户</a>
           <ul class="dropdown-menu" aria-labelledby="userMenu">
             <li><a href="#">管理用户组</a></li>
-            <li><a href="/manage-use">管理用户</a></li>
+            <li><a href="/manage-user">管理用户</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="/loginlog">管理登录日志</a></li>
           </ul>
@@ -99,7 +99,7 @@
       <div class="row">
         <div class="col-md-5">
           <h1 class="page-header">添加</h1>
-          <form action="/Category/add" method="post" autocomplete="off">
+          <form action="/category/add" method="post" autocomplete="off">
             <div class="form-group">
               <label for="category-name">栏目名称</label>
               <input type="text" id="category-name" name="name" class="form-control" placeholder="在此处输入栏目名称" required autocomplete="off">
@@ -340,7 +340,7 @@ $(function(){
 			{
 				$.ajax({
 					type: "POST",
-					url: "/Category/delete",
+					url: "/category/delete",
 					data: "id=" + id,
 					cache: false, //不缓存此页面   
 					success: function (data) {

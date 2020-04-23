@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author v_lvjichao
  */
 @Controller
-public class ManagerUserController {
-    @RequestMapping("/manager-user")
+public class ManageUserController {
+    @RequestMapping("/manage-user")
     public String managerUser() {
-        return "manager-user";
+        return "manage-user";
     }
 }

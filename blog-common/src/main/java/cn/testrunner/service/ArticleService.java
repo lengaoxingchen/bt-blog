@@ -1,5 +1,6 @@
 package cn.testrunner.service;
 
+import cn.testrunner.dto.ArticleListDto;
 import cn.testrunner.model.Article;
 
 import java.util.List;
@@ -36,5 +37,7 @@ public interface ArticleService {
      * 获取所有的文章列表
      * @return
      */
-    List<Article> findAllArticle();
+    List<ArticleListDto> findAllArticle();
+
+    Article findArticleById(Integer id);
 }

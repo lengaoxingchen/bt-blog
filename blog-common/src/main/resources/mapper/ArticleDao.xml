@@ -14,6 +14,14 @@
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="is_del" jdbcType="INTEGER" property="isDel"/>
     </resultMap>
+
+    <resultMap id="ArticleListMap" type="cn.testrunner.dto.ArticleListDto">
+        <id column="id" javaType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="category" jdbcType="INTEGER" property="category"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="time" jdbcType="VARCHAR" property="time"/>
+    </resultMap>
     <sql id="Base_Column_List">
         id, title, keywords, `describe`, category_id, tags, title_pic, visibility, `time`,
     content, is_del
@@ -158,10 +166,16 @@
             is_del      = #{isDel,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <select id="findAllArticle" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from article
-        where is_del=0
+    <select id="findAllArticle" resultMap="ArticleListMap">
+        select a.id as id, title, tags, time, name as category
+        from article a
+                 left join category c on a.category_id = c.id
+        where a.is_del = 0
+          and c.is_del = 0
     </select>
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update article
+        set is_del = 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -1,6 +1,7 @@
 package cn.testrunner.service.impl;
 
 import cn.testrunner.dao.ArticleDao;
+import cn.testrunner.dto.ArticleListDto;
 import cn.testrunner.model.Article;
 import cn.testrunner.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,16 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int delete(Integer articleId) {
-        return articleDao.deleteByPrimaryKey(articleId);
+        return articleDao.deleteById(articleId);
     }
 
     @Override
-    public List<Article> findAllArticle() {
+    public List<ArticleListDto> findAllArticle() {
         return articleDao.findAllArticle();
+    }
+
+    @Override
+    public Article findArticleById(Integer id) {
+        return articleDao.selectByPrimaryKey(id);
     }
 }

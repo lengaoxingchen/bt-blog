@@ -4,10 +4,17 @@ spring:
     url: jdbc:mysql://123.57.135.88:3306/json-lu-blog?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 123456
-  thymeleaf:
-    cache: false
+#  thymeleaf:
+#    cache: false
+#    suffix: .html
+#    prefix: classpath:/templates/
+
+  freemarker:
     suffix: .html
-    prefix: classpath:/templates/
+    template-loader-path: classpath:/templates/
+    cache: false
+    content-type: text/html
+    charset: UTF-8
 
 
 

@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NoticeController {
     @RequestMapping("/notice")
-    public String tags() {
+    public String notice() {
         return "notice";
+    }
+    @RequestMapping("/add-notice")
+    public String addNotice() {
+        return "add-notice";
     }
 }

@@ -1,5 +1,6 @@
 package cn.testrunner.dao;
 
+import cn.testrunner.dto.ArticleListDto;
 import cn.testrunner.model.Article;
 
 import java.util.List;
@@ -20,5 +21,7 @@ public interface ArticleDao {
 
     int updateByPrimaryKey(Article record);
 
-    List<Article> findAllArticle();
+    List<ArticleListDto> findAllArticle();
+
+    int deleteById(Integer articleId);
 }

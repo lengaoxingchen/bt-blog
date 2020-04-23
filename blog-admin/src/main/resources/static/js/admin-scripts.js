@@ -60,7 +60,26 @@ function noselect(){
 	for(var $i=0;$i<checkall.length;$i++){  
 		checkall[$i].checked=false;  
 	}  
-} 
+}
+
+function deleteselect(){
+    if(!confirm("确定要批量删除吗？")){
+        return ;
+    }
+    var cks=document.getElementsByName("checkbox[]");
+    var str="";
+    //拼接所有的选中id
+    for(var i=0;i<cks.length;i++){
+        if(cks[i].checked){
+            str+="id="+cks[i].value+"&";
+        }
+    }
+    //去掉字符串末尾的‘&'
+    str=str.substring(0, str.length-1);
+    location.href="${pageContext.request.contextPath}/article/delAllBooksServlet?ids="+str;
+}
+
+
  
 //IE6-9禁止用户选中文本
 /*document.body.onselectstart = document.body.ondrag = function () {
