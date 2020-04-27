@@ -97,7 +97,7 @@
     </aside>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
       <div class="row">
-        <form action="/Flink/update" method="post" class="add-flink-form" autocomplete="off" draggable="false">
+        <form action="/flink/update" method="post" class="add-flink-form" autocomplete="off" draggable="false">
           <div class="col-md-9">
             <h1 class="page-header">修改友情链接</h1>
             <div class="add-article-box">

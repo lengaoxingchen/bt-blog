@@ -18,4 +18,5 @@
         <module>blog-admin</module>
         <module>blog-common</module>
     </modules>
+
 </project>

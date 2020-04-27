@@ -5,9 +5,11 @@ import cn.testrunner.model.Article;
 import cn.testrunner.model.Category;
 import cn.testrunner.service.ArticleService;
 import cn.testrunner.service.CategoryService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -25,13 +27,14 @@ public class ArticleController {
     private CategoryService categoryService;
 
     @RequestMapping("/article")
-    public ModelAndView article() {
-        List<ArticleListDto> articleList = articleService.findAllArticle();
+    public ModelAndView article(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        PageInfo<ArticleListDto> articleList = articleService.findAllArticle(pageNo, pageSize);
         ModelAndView mv = new ModelAndView();
         mv.addObject("articleList", articleList);
         mv.setViewName("article");
         return mv;
     }
+
 
     @RequestMapping("/add-article")
     public String addArticle() {
@@ -54,6 +57,7 @@ public class ArticleController {
         Integer id = articleService.save(article);
         return "redirect:/article";
     }
+
     @RequestMapping("/article/update")
     public String update(Article article) {
         Integer id = articleService.update(article);
@@ -61,9 +65,9 @@ public class ArticleController {
     }
 
     @RequestMapping("/article/delete")
-    public ModelAndView delete(Integer id){
+    public ModelAndView delete(@RequestParam("id") Integer id, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         Integer count = articleService.delete(id);
-        List<ArticleListDto> articleList = articleService.findAllArticle();
+        PageInfo<ArticleListDto> articleList = articleService.findAllArticle(pageNo, pageSize);
         ModelAndView mv = new ModelAndView();
         mv.addObject("articleList", articleList);
         mv.setViewName("article");

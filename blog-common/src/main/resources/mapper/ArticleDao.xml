@@ -172,6 +172,7 @@
                  left join category c on a.category_id = c.id
         where a.is_del = 0
           and c.is_del = 0
+        order by time desc
     </select>
     <update id="deleteById" parameterType="java.lang.Integer">
         update article

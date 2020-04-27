@@ -2,6 +2,7 @@ package cn.testrunner.service;
 
 import cn.testrunner.dto.ArticleListDto;
 import cn.testrunner.model.Article;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface ArticleService {
 
     /**
      * 新建文章
+     *
      * @param article 文章实体
      * @return 文章id
      */
@@ -21,6 +23,7 @@ public interface ArticleService {
 
     /**
      * 修改文章
+     *
      * @param article 文章实体
      * @return 文章id
      */
@@ -28,6 +31,7 @@ public interface ArticleService {
 
     /**
      * 删除文章
+     *
      * @param articleId 文章id
      * @return 成功或者失败
      */
@@ -35,9 +39,10 @@ public interface ArticleService {
 
     /**
      * 获取所有的文章列表
+     *
      * @return
      */
-    List<ArticleListDto> findAllArticle();
+    PageInfo<ArticleListDto> findAllArticle(Integer pageNo, Integer pageSize);
 
     Article findArticleById(Integer id);
 }

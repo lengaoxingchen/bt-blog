@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>文章 - JsonLuBlog管理系统</title>
+    <title>写文章 - JsonLuBlog管理系统</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
@@ -31,8 +31,8 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span
-                            class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
-                            class="icon-bar"></span>
+                                class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
+                                class="icon-bar"></span>
                         <span class="icon-bar"></span></button>
                     <a class="navbar-brand" href="/">YlsatCMS</a></div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -40,7 +40,7 @@
                         <li><a href="/message">消息 <span class="badge">1</span></a></li>
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                                 aria-haspopup="true" aria-expanded="false">admin <span
-                                class="caret"></span></a>
+                                        class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-menu-left">
                                 <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
                                 <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
@@ -106,73 +106,105 @@
             </ul>
         </aside>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-            <form action="#" method="post">
-                <h1 class="page-header">操作</h1>
-                <ol class="breadcrumb">
-                    <li><a href="/add-article">增加文章</a></li>
-                </ol>
-                <h1 class="page-header">管理 <span class="badge">7</span></h1>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                        <tr>
-                            <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span>
-                            </th>
-                            <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
-                            <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">栏目</span></th>
-                            <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span
-                                    class="visible-lg">标签</span></th>
-                            <th class="hidden-sm"><span class="glyphicon glyphicon-comment"></span> <span
-                                    class="visible-lg">评论</span></th>
-                            <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">日期</span></th>
-                            <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <#list articleList as article>
-                        <tr>
-                            <td><input type="checkbox" class="input-control" name="checkbox[]" value="${article.id}"/>
-                            </td>
-                            <td class="article-title">${article.title}</td>
-                            <td>${article.category}</td>
-                            <td class="hidden-sm">${article.tags}</td>
-                            <td class="hidden-sm">${article.commentCount}</td>
-                            <td>${article.time}</td>
-                            <td><a href="/update-article?id=${article.id}">修改</a> <a rel="${article.id}">删除</a>
-                            </td>
-                        </tr>
-                        </
-                        #list>
-                        </tbody>
-                    </table>
-                </div>
-                <footer class="message_footer">
-                    <nav>
-                        <div class="btn-toolbar operation" role="toolbar">
-                            <div class="btn-group" role="group"><a class="btn btn-default" onClick="select()">全选</a> <a
-                                    class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default"
-                                                                                          onClick="noselect()">不选</a>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-default" data-toggle="tooltip"
-                                        data-placement="bottom" title="删除全部选中" name="checkbox_delete"
-                                        onclick="deleteselect()">删除
-                                </button>
+            <div class="row">
+                <form action="/article/add" method="post" class="add-article-form">
+                    <div class="col-md-9">
+                        <h1 class="page-header">撰写新文章</h1>
+                        <div class="form-group">
+                            <label for="article-title" class="sr-only">标题</label>
+                            <input type="text" id="article-title" name="title" class="form-control"
+                                   placeholder="在此处输入标题" required autofocus autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="article-content" class="sr-only">内容</label>
+                            <script id="article-content" name="content" type="text/plain"></script>
+                        </div>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>关键字</span></h2>
+                            <div class="add-article-box-content">
+                                <input type="text" class="form-control" placeholder="请输入关键字" name="keywords"
+                                       autocomplete="off">
+                                <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
                             </div>
                         </div>
-                        <ul class="pagination pagenav">
-                            <li class="disabled"><a aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
-                            </li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a></li>
-                        </ul>
-                    </nav>
-                </footer>
-            </form>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>描述</span></h2>
+                            <div class="add-article-box-content">
+                                <textarea class="form-control" name="describe" autocomplete="off"></textarea>
+                                <span class="prompt-text">描述是可选的手工创建的内容总结，并可以在网页描述中使用</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h1 class="page-header">操作</h1>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>栏目</span></h2>
+                            <div class="add-article-box-content">
+                                <ul class="category-list">
+                                    <li>
+                                        <label>
+                                            <input name="categoryId" type="radio" value="1" checked>
+                                            这是栏目 <em class="hidden-md">( 栏目ID: <span>1</span> )</em></label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="categoryId" type="radio" value="2">
+                                            这是栏目 <em class="hidden-md">( 栏目ID: <span>2</span> )</em></label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="categoryId" type="radio" value="3">
+                                            这是栏目 <em class="hidden-md">( 栏目ID: <span>3</span> )</em></label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="categoryId" type="radio" value="4">
+                                            这是栏目 <em class="hidden-md">( 栏目ID: <span>4</span> )</em></label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="categoryId" type="radio" value="5">
+                                            这是栏目 <em class="hidden-md">( 栏目ID: <span>5</span> )</em></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>标签</span></h2>
+                            <div class="add-article-box-content">
+                                <input type="text" class="form-control" placeholder="输入新标签" name="tags"
+                                       autocomplete="off">
+                                <span class="prompt-text">多个标签请用英文逗号,隔开</span></div>
+                        </div>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>标题图片</span></h2>
+                            <div class="add-article-box-content">
+                                <input type="text" class="form-control" placeholder="点击按钮选择图片" id="pictureUpload"
+                                       name="titlePic" autocomplete="off">
+                            </div>
+                            <div class="add-article-box-footer">
+                                <button class="btn btn-default" type="button" ID="upImage">选择</button>
+                            </div>
+                        </div>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>发布</span></h2>
+                            <div class="add-article-box-content">
+                                <p><label>状态：</label><span class="article-status-display">未发布</span></p>
+                                <p><label>公开度：</label><input type="radio" name="visibility" value="0" checked/>公开 <input
+                                            type="radio" name="visibility" value="1"/>加密</p>
+                                <!--
+                                <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" name="time"
+                                                                                                value="${.now}"/></span>
+                                </p>
+                                -->
+                            </div>
+                            <div class="add-article-box-footer">
+                                <button class="btn btn-primary" type="submit" name="submit">发布</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -183,7 +215,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                                aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">个人信息</h4>
                 </div>
                 <div class="modal-body">
@@ -330,29 +362,48 @@
 </div>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/admin-scripts.js"></script>
-<script>
-    //是否确认删除
+<script src="/lib/ueditor/ueditor.config.js"></script>
+<script src="/lib/ueditor/ueditor.all.min.js"></script>
+<script src="/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script id="uploadEditor" type="text/plain" style="display:none;"></script>
+<script type="text/javascript">
+    var editor = UE.getEditor('article-content');
+    window.onresize = function () {
+        window.location.reload();
+    }
+    var _uploadEditor;
     $(function () {
-        $("#main table tbody tr td a").click(function () {
-            var name = $(this);
-            var id = name.attr("rel"); //对应id
-            if (event.srcElement.outerText === "删除") {
-                if (window.confirm("此操作不可逆，是否确认？")) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/article/delete",
-                        data: "id=" + id,
-                        cache: false, //不缓存此页面
-                        success: function (data) {
-                            window.location.reload();
-                        }
-                    });
-                }
-                ;
-            }
-            ;
+        //重新实例化一个编辑器，防止在上面的editor编辑器中显示上传的图片或者文件
+        _uploadEditor = UE.getEditor('uploadEditor');
+        _uploadEditor.ready(function () {
+            //设置编辑器不可用
+            //_uploadEditor.setDisabled();
+            //隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+            _uploadEditor.hide();
+            //侦听图片上传
+            _uploadEditor.addListener('beforeInsertImage', function (t, arg) {
+                //将地址赋值给相应的input,只去第一张图片的路径
+                $("#pictureUpload").attr("value", arg[0].src);
+                //图片预览
+                //$("#imgPreview").attr("src", arg[0].src);
+            })
+            //侦听文件上传，取上传文件列表中第一个上传的文件的路径
+            _uploadEditor.addListener('afterUpfile', function (t, arg) {
+                $("#fileUpload").attr("value", _uploadEditor.options.filePath + arg[0].url);
+            })
         });
     });
+    //弹出图片上传的对话框
+    $('#upImage').click(function () {
+        var myImage = _uploadEditor.getDialog("insertimage");
+        myImage.open();
+    });
+
+    //弹出文件上传的对话框
+    function upFiles() {
+        var myFiles = _uploadEditor.getDialog("attachment");
+        myFiles.open();
+    }
 </script>
 </body>
 </html>

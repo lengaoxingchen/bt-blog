@@ -12,6 +12,7 @@ public class NoticeController {
     public String notice() {
         return "notice";
     }
+
     @RequestMapping("/add-notice")
     public String addNotice() {
         return "add-notice";
